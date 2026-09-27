@@ -46,7 +46,7 @@ Worker in the dashboard (Worker → Settings → Domains & Routes).
 ```
 public/
   index.html    # the site
-  styles.css    # all styling (dark/light via prefers-color-scheme)
+  styles.css    # all styling (dark/light via OS preference or header toggle)
   404.html      # not-found page
   favicon.svg
 wrangler.jsonc  # optional CLI deploy config
