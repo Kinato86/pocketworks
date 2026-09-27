@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Score Keeper — Pocketworks</title>
+  <meta name="description" content="Keeps score for the games we play at work and turns the results into per-sport Elo leaderboards, team standings and head-to-head rivalries.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <meta property="og:title" content="Score Keeper — Pocketworks">
+  <meta property="og:description" content="Keeps score for the games we play at work and turns the results into per-sport Elo leaderboards, team standings and head-to-head rivalries.">
+  <meta property="og:url" content="https://pocketworks.dev/score-keeper">
+  <meta property="og:image" content="https://pocketworks.dev/projects/score-keeper.png">
+  <meta property="og:type" content="article">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap">
+      <a class="brand" href="/">pocketworks<span class="accent">.dev</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap project-hero">
+      <a class="back-link" href="/#projects">&larr; All projects</a>
+      <div class="project-head">
+        <img class="project-icon" src="/projects/score-keeper.png" alt="Score Keeper icon" width="96" height="96">
+        <div>
+          <p class="kicker">Android app · Office games</p>
+          <h1>Score Keeper</h1>
+        </div>
+      </div>
+      <p class="lede">Keeps score for the games we play at work and turns the results into per-sport Elo leaderboards, team standings and head-to-head rivalries.</p>
+      <p class="tags"><span>React Native</span><span>Expo</span><span>Android</span><span>SQLite</span></p>
+    </section>
+
+    <section class="wrap">
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li><strong>Five sports and counting</strong>Table tennis including round-the-table, fussball, jeu de boules, shuffleboard, and darts in 301, 501 and Tactics.</li>
+        <li><strong>Only finished games count</strong>Record a match after it is over: sport, who stood on each side, what it was played to, and the score. An impossible score is refused with a reason.</li>
+        <li><strong>Leaderboards</strong>A per-sport Elo rating, doubles and triples pairings, and rivalries with the full head-to-head record.</li>
+        <li><strong>History</strong>Every match is listed and can be opened for details, a note, or deletion.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Under the hood</h2>
+      <p>Expo and React Native, local-only on Android with SQLite. The rating and validation logic is pure TypeScript tested with Vitest, and the database layer runs its tests on Node&#x27;s own SQLite.</p>
+    </section>
+
+    <section class="wrap project-nav">
+      <a class="prev" href="/dnd-table"><small>Previous project</small>DnD Table</a>
+      <a class="next" href="/mtg-journal"><small>Next project</small>MTG Journal</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Paul van Dronkelaar · pocketworks.dev</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t === 'light' || t === 'dark') return t;
+        return mq.matches ? 'light' : 'dark';
+      }
+
+      function updateLabel() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateLabel();
+      });
+
+      mq.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+  </script>
+</body>
+</html>

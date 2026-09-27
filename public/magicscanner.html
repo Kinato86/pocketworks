@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MagicScanner — Pocketworks</title>
+  <meta name="description" content="Point your camera at a Magic card and it is in your collection. Recognition runs on the phone, Scryfall fills in the details, and a local database keeps track of what you own.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <meta property="og:title" content="MagicScanner — Pocketworks">
+  <meta property="og:description" content="Point your camera at a Magic card and it is in your collection. Recognition runs on the phone, Scryfall fills in the details, and a local database keeps track of what you own.">
+  <meta property="og:url" content="https://pocketworks.dev/magicscanner">
+  <meta property="og:image" content="https://pocketworks.dev/projects/magicscanner.png">
+  <meta property="og:type" content="article">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap">
+      <a class="brand" href="/">pocketworks<span class="accent">.dev</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap project-hero">
+      <a class="back-link" href="/#projects">&larr; All projects</a>
+      <div class="project-head">
+        <img class="project-icon" src="/projects/magicscanner.png" alt="MagicScanner icon" width="96" height="96">
+        <div>
+          <p class="kicker">Android app · Card collection</p>
+          <h1>MagicScanner</h1>
+        </div>
+      </div>
+      <p class="lede">Point your camera at a Magic card and it is in your collection. Recognition runs on the phone, Scryfall fills in the details, and a local database keeps track of what you own.</p>
+      <p class="tags"><span>React Native</span><span>TypeScript</span><span>Computer vision</span><span>SQLite</span></p>
+    </section>
+
+    <section class="wrap">
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li><strong>On-device recognition</strong>A perceptual-hash engine finds the card in the camera frame, straightens it and matches it against a bundled index. No cloud, no per-scan cost.</li>
+        <li><strong>Set-agnostic matching</strong>The engine identifies the card name rather than the exact printing, which keeps the index small and the match forgiving of lighting and wear.</li>
+        <li><strong>Scryfall for the details</strong>Once a name is recognised, Scryfall supplies the printing, price, oracle text and image.</li>
+        <li><strong>Your collection stays yours</strong>Everything is stored in a local SQLite database, with JSON export and import, plus import of CSV exports from other scanner apps.</li>
+        <li><strong>Deck recommendations</strong>A companion web app loads your export and asks Claude which cards from your own collection fit a deck you describe.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Under the hood</h2>
+      <p>The recognition engine is pure, dependency-free TypeScript shared between the Expo app and the tooling that builds the reference index from Scryfall. The web companion is a Next.js app that runs the Claude Agent SDK server-side so credentials never reach the browser.</p>
+    </section>
+
+    <section class="wrap project-nav">
+      <a class="prev" href="/mtg-journal"><small>Previous project</small>MTG Journal</a>
+      <a class="next" href="/remind-me"><small>Next project</small>Remind Me</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Paul van Dronkelaar · pocketworks.dev</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t === 'light' || t === 'dark') return t;
+        return mq.matches ? 'light' : 'dark';
+      }
+
+      function updateLabel() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateLabel();
+      });
+
+      mq.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+  </script>
+</body>
+</html>

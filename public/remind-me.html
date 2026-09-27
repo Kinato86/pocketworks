@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remind Me — Pocketworks</title>
+  <meta name="description" content="A reminders app that goes beyond “tomorrow at 9”: flexible recurrence, offline voice input, place-based triggers and reminders that wait for the right weather.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <meta property="og:title" content="Remind Me — Pocketworks">
+  <meta property="og:description" content="A reminders app that goes beyond “tomorrow at 9”: flexible recurrence, offline voice input, place-based triggers and reminders that wait for the right weather.">
+  <meta property="og:url" content="https://pocketworks.dev/remind-me">
+  <meta property="og:image" content="https://pocketworks.dev/projects/remind-me.png">
+  <meta property="og:type" content="article">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap">
+      <a class="brand" href="/">pocketworks<span class="accent">.dev</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap project-hero">
+      <a class="back-link" href="/#projects">&larr; All projects</a>
+      <div class="project-head">
+        <img class="project-icon" src="/projects/remind-me.png" alt="Remind Me icon" width="96" height="96">
+        <div>
+          <p class="kicker">Android app · Reminders</p>
+          <h1>Remind Me</h1>
+        </div>
+      </div>
+      <p class="lede">A reminders app that goes beyond “tomorrow at 9”: flexible recurrence, offline voice input, place-based triggers and reminders that wait for the right weather.</p>
+      <p class="tags"><span>React Native</span><span>Expo</span><span>Offline-first</span><span>TypeScript</span></p>
+    </section>
+
+    <section class="wrap">
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li><strong>Recurrence that fits real life</strong>One-time, daily, every N days, weekly on any set of weekdays, every N weeks, monthly or yearly, with optional end dates and the ability to pause.</li>
+        <li><strong>Voice input, fully offline</strong>Say “remind me every Monday at 9 to take out the trash”. On-device speech recognition and a local parser pre-fill the editor, and you confirm before saving.</li>
+        <li><strong>Done and Snooze from the notification</strong>Notifications carry Done and Snooze actions and are scheduled over a rolling two-week horizon that rebuilds whenever data changes.</li>
+        <li><strong>Place-based reminders</strong>Trigger a reminder when you arrive somewhere, using geofencing with an address search or your current location and a configurable radius.</li>
+        <li><strong>Weather-gated reminders</strong>Limit a reminder to rain or snow expected today, a temperature threshold, or a dry spell of N days. Watering the garden resets the dry-spell counter.</li>
+        <li><strong>Calendar and history</strong>A month view with per-day category dots, overdue tracking on the home screen, and a history of done, dismissed and missed occurrences.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Under the hood</h2>
+      <p>Expo and React Native with TypeScript. Forecasts come from Open-Meteo with no API key, evaluated by a periodic background task. All persistence goes through a small storage adapter interface so the backend can be swapped without touching the rest of the app.</p>
+    </section>
+
+    <section class="wrap project-nav">
+      <a class="prev" href="/magicscanner"><small>Previous project</small>MagicScanner</a>
+      <a class="next" href="/motivate"><small>Next project</small>Motivate</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Paul van Dronkelaar · pocketworks.dev</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t === 'light' || t === 'dark') return t;
+        return mq.matches ? 'light' : 'dark';
+      }
+
+      function updateLabel() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateLabel();
+      });
+
+      mq.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camping Journal — Pocketworks</title>
+  <meta name="description" content="A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <meta property="og:title" content="Camping Journal — Pocketworks">
+  <meta property="og:description" content="A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.">
+  <meta property="og:url" content="https://pocketworks.dev/camping-journal">
+  <meta property="og:image" content="https://pocketworks.dev/projects/camping-journal.svg">
+  <meta property="og:type" content="article">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap">
+      <a class="brand" href="/">pocketworks<span class="accent">.dev</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap project-hero">
+      <a class="back-link" href="/#projects">&larr; All projects</a>
+      <div class="project-head">
+        <img class="project-icon" src="/projects/camping-journal.svg" alt="Camping Journal icon" width="96" height="96">
+        <div>
+          <p class="kicker">Android app · Dutch · Data project</p>
+          <h1>Camping Journal</h1>
+        </div>
+      </div>
+      <p class="lede">A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.</p>
+      <p class="tags"><span>Android</span><span>JavaScript</span><span>SQLite</span><span>MapLibre</span></p>
+    </section>
+
+    <section class="wrap">
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li><strong>Sixty-three visits, fifty-nine campsites</strong>Photos of every handwritten page were transcribed word for word into one file per page, with the structured data pulled out alongside the full text.</li>
+        <li><strong>Nothing guessed</strong>If a year, price or name was not on the page, the field stays empty. Two hundred and fifty uncertain points are logged and can be ticked off inside the app.</li>
+        <li><strong>Rating dimensions counted, not invented</strong>The fifteen dimensions come from how often the journal itself talks about cycling, quiet, forest, space, walking, showers and so on, and that frequency sets their weight.</li>
+        <li><strong>Suggestions with evidence</strong>The old text has no scores but clear verdicts. Those became 328 suggested ratings, each with its literal quote, to accept or reject one by one.</li>
+        <li><strong>A sharp map</strong>Vector tiles from OpenFreeMap drawn by MapLibre, so labels stay crisp at any zoom. Addresses are geocoded through Nominatim, and a pin can be placed by hand when the journal has no street name.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Under the hood</h2>
+      <p>An Expo app with SQLite storage and a MapLibre GL map. The extraction pipeline lives next to the app, so the data can be re-derived from the page transcripts at any time.</p>
+    </section>
+
+    <section class="wrap project-nav">
+      <a class="prev" href="/boardgame-tester"><small>Previous project</small>Boardgame Tester</a>
+      <a class="next" href="/dnd-table"><small>Next project</small>DnD Table</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Paul van Dronkelaar · pocketworks.dev</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t === 'light' || t === 'dark') return t;
+        return mq.matches ? 'light' : 'dark';
+      }
+
+      function updateLabel() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateLabel();
+      });
+
+      mq.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+  </script>
+</body>
+</html>

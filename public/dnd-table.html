@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DnD Table — Pocketworks</title>
+  <meta name="description" content="Run a D&amp;D session where you sit at the table as GM or player and every other seat is an AI with its own personality.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <meta property="og:title" content="DnD Table — Pocketworks">
+  <meta property="og:description" content="Run a D&amp;D session where you sit at the table as GM or player and every other seat is an AI with its own personality.">
+  <meta property="og:url" content="https://pocketworks.dev/dnd-table">
+  <meta property="og:image" content="https://pocketworks.dev/projects/dnd-table.svg">
+  <meta property="og:type" content="article">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap">
+      <a class="brand" href="/">pocketworks<span class="accent">.dev</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap project-hero">
+      <a class="back-link" href="/#projects">&larr; All projects</a>
+      <div class="project-head">
+        <img class="project-icon" src="/projects/dnd-table.svg" alt="DnD Table icon" width="96" height="96">
+        <div>
+          <p class="kicker">Local web app · Tabletop RPG</p>
+          <h1>DnD Table</h1>
+        </div>
+      </div>
+      <p class="lede">Run a D&amp;D session where you sit at the table as GM or player and every other seat is an AI with its own personality.</p>
+      <p class="tags"><span>TypeScript</span><span>React</span><span>Hono</span><span>AI</span><span>MCP</span></p>
+    </section>
+
+    <section class="wrap">
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li><strong>Take any seat</strong>Be the game master with AI players, or be a player while an AI runs the game. Each AI seat has its own personality and only sees what that character would see.</li>
+        <li><strong>More than one rule system</strong>D&amp;D 5e SRD and Pathfinder 1e are each a single ruleset file, with character builders for both.</li>
+        <li><strong>Scenarios from PDFs</strong>Drop an adventure&#x27;s PDF into a scenario folder, ingest it, and the table plays through it. Or pick freeform play with no scenario at all.</li>
+        <li><strong>Hear the table</strong>Speech reads the table aloud and music sets the scene, so a session feels like a session rather than a chat log.</li>
+        <li><strong>Claude Code as the brain</strong>An MCP server lets Claude Code dispatch each AI seat to its own subagent, with no configuration beyond starting it in the repo.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Under the hood</h2>
+      <p>A pnpm workspace: a game engine package with no HTTP, a shared API contract, a Hono server with SQLite and server-sent events, a React and Vite frontend, and a stdio MCP server. The server binds to localhost only, since nothing in the API authenticates.</p>
+    </section>
+
+    <section class="wrap project-nav">
+      <a class="prev" href="/camping-journal"><small>Previous project</small>Camping Journal</a>
+      <a class="next" href="/score-keeper"><small>Next project</small>Score Keeper</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Paul van Dronkelaar · pocketworks.dev</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('.theme-toggle');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t === 'light' || t === 'dark') return t;
+        return mq.matches ? 'light' : 'dark';
+      }
+
+      function updateLabel() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      }
+
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateLabel();
+      });
+
+      mq.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+  </script>
+</body>
+</html>
