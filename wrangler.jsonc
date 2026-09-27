@@ -6,6 +6,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pocketworks-dev",
   "compatibility_date": "2026-09-27",
+  "routes": [
+    { "pattern": "pocketworks.dev", "custom_domain": true },
+    { "pattern": "www.pocketworks.dev", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"
