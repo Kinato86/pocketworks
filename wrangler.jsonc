@@ -1,0 +1,13 @@
+{
+  // Cloudflare Workers config — serves ./public as a static site.
+  // Deploy manually with: npx wrangler deploy
+  // (Or skip this file entirely and connect the repo via the Cloudflare
+  //  dashboard — see README.md.)
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pocketworks-dev",
+  "compatibility_date": "2026-09-27",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
