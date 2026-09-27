@@ -125,7 +125,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* Hero */
-.hero { padding: 5.5rem 1rem 4rem; }
+.hero { padding: 5rem 1rem 2.5rem; }
 
 .kicker {
   color: var(--accent);
@@ -169,7 +169,7 @@ h1 {
 .btn.primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
 
 /* Sections */
-main section { padding: 3rem 1rem; }
+main section { padding: 1.5rem 1rem; }
 
 h2 {
   font-size: 1.6rem;
