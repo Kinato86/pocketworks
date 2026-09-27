@@ -25,7 +25,6 @@ PROJECTS = [
             ("Analytics", "Win rates per player, per commander and per color identity, straight from the games you actually played."),
             ("Shared history", "Finished games are uploaded to a shared database the whole playgroup reads. Only the game in progress and games waiting to upload stay on the phone."),
         ],
-        "under_the_hood": "Built with Expo and React Native on Android, pinned to the SDK the store version of Expo Go runs. Game history lives in Supabase; the live game is local so a dropped connection never interrupts play.",
     },
     {
         "slug": "magicscanner",
@@ -41,7 +40,6 @@ PROJECTS = [
             ("Your collection stays yours", "Everything is stored in a local SQLite database, with JSON export and import, plus import of CSV exports from other scanner apps."),
             ("Deck recommendations", "A companion web app loads your export and asks Claude which cards from your own collection fit a deck you describe."),
         ],
-        "under_the_hood": "The recognition engine is pure, dependency-free TypeScript shared between the Expo app and the tooling that builds the reference index from Scryfall. The web companion is a Next.js app that runs the Claude Agent SDK server-side so credentials never reach the browser.",
     },
     {
         "slug": "remind-me",
@@ -58,7 +56,6 @@ PROJECTS = [
             ("Weather-gated reminders", "Limit a reminder to rain or snow expected today, a temperature threshold, or a dry spell of N days. Watering the garden resets the dry-spell counter."),
             ("Calendar and history", "A month view with per-day category dots, overdue tracking on the home screen, and a history of done, dismissed and missed occurrences."),
         ],
-        "under_the_hood": "Expo and React Native with TypeScript. Forecasts come from Open-Meteo with no API key, evaluated by a periodic background task. All persistence goes through a small storage adapter interface so the backend can be swapped without touching the rest of the app.",
     },
     {
         "slug": "motivate",
@@ -75,7 +72,6 @@ PROJECTS = [
             ("Achievements", "Twenty badges for streaks, hours, completions, variety, planning, early bird and night owl habits, and goal wins."),
             ("Nudges", "Local notifications before each activity with a configurable lead time."),
         ],
-        "under_the_hood": "Expo and React Native with TypeScript. Everything is stored on the device behind a swappable storage adapter, so a backend can be added later without rewriting the app.",
     },
     {
         "slug": "boardgame-tester",
@@ -91,7 +87,6 @@ PROJECTS = [
             ("Every game recorded", "Each run writes an aggregate summary plus one record per game with every action, event and final board."),
             ("Play it yourself", "A browser version lets one person play District 44 against the same bots the simulator uses, with the bots running in a Web Worker."),
         ],
-        "under_the_hood": "A pnpm monorepo in TypeScript. The engine knows nothing about a specific game; District 44, a city-building game by a board game designer, is the first game plugged in. The browser app is a static Vite site with no framework.",
     },
     {
         "slug": "camping-journal",
@@ -107,7 +102,6 @@ PROJECTS = [
             ("Suggestions with evidence", "The old text has no scores but clear verdicts. Those became 328 suggested ratings, each with its literal quote, to accept or reject one by one."),
             ("A sharp map", "Vector tiles from OpenFreeMap drawn by MapLibre, so labels stay crisp at any zoom. Addresses are geocoded through Nominatim, and a pin can be placed by hand when the journal has no street name."),
         ],
-        "under_the_hood": "An Expo app with SQLite storage and a MapLibre GL map. The extraction pipeline lives next to the app, so the data can be re-derived from the page transcripts at any time.",
     },
     {
         "slug": "dnd-table",
@@ -123,7 +117,6 @@ PROJECTS = [
             ("Hear the table", "Speech reads the table aloud and music sets the scene, so a session feels like a session rather than a chat log."),
             ("Claude Code as the brain", "An MCP server lets Claude Code dispatch each AI seat to its own subagent, with no configuration beyond starting it in the repo."),
         ],
-        "under_the_hood": "A pnpm workspace: a game engine package with no HTTP, a shared API contract, a Hono server with SQLite and server-sent events, a React and Vite frontend, and a stdio MCP server. The server binds to localhost only, since nothing in the API authenticates.",
     },
     {
         "slug": "score-keeper",
@@ -138,7 +131,6 @@ PROJECTS = [
             ("Leaderboards", "A per-sport Elo rating, doubles and triples pairings, and rivalries with the full head-to-head record."),
             ("History", "Every match is listed and can be opened for details, a note, or deletion."),
         ],
-        "under_the_hood": "Expo and React Native, local-only on Android with SQLite. The rating and validation logic is pure TypeScript tested with Vitest, and the database layer runs its tests on Node's own SQLite.",
     },
 ]
 
@@ -250,11 +242,6 @@ def render(p, prev, nxt):
       <ul class="feature-list">
 {features}
       </ul>
-    </section>
-
-    <section class="wrap">
-      <h2>Under the hood</h2>
-      <p>{e(p['under_the_hood'])}</p>
     </section>
 
     <section class="wrap project-nav">
