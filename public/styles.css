@@ -53,7 +53,8 @@ body {
 .wrap {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 a { color: var(--accent); text-decoration: none; }
