@@ -89,6 +89,22 @@ PROJECTS = [
         ],
     },
     {
+        "slug": "retinue",
+        "name": "Retinue",
+        "icon": "retinue.svg",
+        "kicker": "Board game design · Deck builder",
+        "tagline": "A deck-building game for 2 to 4 players where the deck you build is what decides the game. Designed in the open, tuned with thousands of simulated games, and playable in the browser against bots.",
+        "tags": ["Game design", "TypeScript", "Simulation", "Vite"],
+        "features": [
+            ("Eight seasons, three phases", "Each season you improve your deck at the market, play your whole deck onto the season's battlefields, then collect income. Most Renown after the last season wins."),
+            ("The whole deck fights every season", "Decks are capped at fifteen cards and a campaign plays all of them, so adding a card means cutting one, and no card ever sits idle."),
+            ("Build for what you can see", "Next season's battlefields and terrain are face up a season ahead, and the market row never resets, so you plan a deck instead of reacting to a draw."),
+            ("Five factions, one strength", "Might is the only number. Folk, Knights, Rogues, Clergy and Wilds differ by keyword and by which terrain is home and which is hostile."),
+            ("Skirmishes, beasts and territories", "Skirmishes pay once, beasts are brought down together and paid by rank, territories are kept for the rest of the game."),
+            ("Tuned by simulation", "Every uncertain rule is a config flag. The Boardgame Tester runs bots through hundreds of games per variant to check that building matters, factions stay balanced and games stay open."),
+        ],
+    },
+    {
         "slug": "camping-journal",
         "name": "Camping Journal",
         "icon": "camping-journal.svg",

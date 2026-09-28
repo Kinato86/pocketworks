@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Camping Journal — Pocketworks</title>
-  <meta name="description" content="A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.">
+  <title>Retinue — Pocketworks</title>
+  <meta name="description" content="A deck-building game for 2 to 4 players where the deck you build is what decides the game. Designed in the open, tuned with thousands of simulated games, and playable in the browser against bots.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
   <script>
@@ -13,10 +13,10 @@
       if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   </script>
-  <meta property="og:title" content="Camping Journal — Pocketworks">
-  <meta property="og:description" content="A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.">
-  <meta property="og:url" content="https://pocketworks.dev/camping-journal">
-  <meta property="og:image" content="https://pocketworks.dev/projects/camping-journal.svg">
+  <meta property="og:title" content="Retinue — Pocketworks">
+  <meta property="og:description" content="A deck-building game for 2 to 4 players where the deck you build is what decides the game. Designed in the open, tuned with thousands of simulated games, and playable in the browser against bots.">
+  <meta property="og:url" content="https://pocketworks.dev/retinue">
+  <meta property="og:image" content="https://pocketworks.dev/projects/retinue.svg">
   <meta property="og:type" content="article">
 </head>
 <body>
@@ -41,30 +41,31 @@
     <section class="hero wrap project-hero">
       <a class="back-link" href="/#projects">&larr; All projects</a>
       <div class="project-head">
-        <img class="project-icon" src="/projects/camping-journal.svg" alt="Camping Journal icon" width="96" height="96">
+        <img class="project-icon" src="/projects/retinue.svg" alt="Retinue icon" width="96" height="96">
         <div>
-          <p class="kicker">Android app · Dutch · Data project</p>
-          <h1>Camping Journal</h1>
+          <p class="kicker">Board game design · Deck builder</p>
+          <h1>Retinue</h1>
         </div>
       </div>
-      <p class="lede">A Dutch-language app built around a handwritten journal of 63 campsite visits. Every page was transcribed verbatim, nothing guessed, every doubt logged.</p>
-      <p class="tags"><span>Android</span><span>JavaScript</span><span>SQLite</span><span>MapLibre</span></p>
+      <p class="lede">A deck-building game for 2 to 4 players where the deck you build is what decides the game. Designed in the open, tuned with thousands of simulated games, and playable in the browser against bots.</p>
+      <p class="tags"><span>Game design</span><span>TypeScript</span><span>Simulation</span><span>Vite</span></p>
     </section>
 
     <section class="wrap">
       <h2>What it does</h2>
       <ul class="feature-list">
-        <li><strong>Sixty-three visits, fifty-nine campsites</strong>Photos of every handwritten page were transcribed word for word into one file per page, with the structured data pulled out alongside the full text.</li>
-        <li><strong>Nothing guessed</strong>If a year, price or name was not on the page, the field stays empty. Two hundred and fifty uncertain points are logged and can be ticked off inside the app.</li>
-        <li><strong>Rating dimensions counted, not invented</strong>The fifteen dimensions come from how often the journal itself talks about cycling, quiet, forest, space, walking, showers and so on, and that frequency sets their weight.</li>
-        <li><strong>Suggestions with evidence</strong>The old text has no scores but clear verdicts. Those became 328 suggested ratings, each with its literal quote, to accept or reject one by one.</li>
-        <li><strong>A sharp map</strong>Vector tiles from OpenFreeMap drawn by MapLibre, so labels stay crisp at any zoom. Addresses are geocoded through Nominatim, and a pin can be placed by hand when the journal has no street name.</li>
+        <li><strong>Eight seasons, three phases</strong>Each season you improve your deck at the market, play your whole deck onto the season&#x27;s battlefields, then collect income. Most Renown after the last season wins.</li>
+        <li><strong>The whole deck fights every season</strong>Decks are capped at fifteen cards and a campaign plays all of them, so adding a card means cutting one, and no card ever sits idle.</li>
+        <li><strong>Build for what you can see</strong>Next season&#x27;s battlefields and terrain are face up a season ahead, and the market row never resets, so you plan a deck instead of reacting to a draw.</li>
+        <li><strong>Five factions, one strength</strong>Might is the only number. Folk, Knights, Rogues, Clergy and Wilds differ by keyword and by which terrain is home and which is hostile.</li>
+        <li><strong>Skirmishes, beasts and territories</strong>Skirmishes pay once, beasts are brought down together and paid by rank, territories are kept for the rest of the game.</li>
+        <li><strong>Tuned by simulation</strong>Every uncertain rule is a config flag. The Boardgame Tester runs bots through hundreds of games per variant to check that building matters, factions stay balanced and games stay open.</li>
       </ul>
     </section>
 
     <section class="wrap project-nav">
-      <a class="prev" href="/retinue"><small>Previous project</small>Retinue</a>
-      <a class="next" href="/dnd-table"><small>Next project</small>DnD Table</a>
+      <a class="prev" href="/boardgame-tester"><small>Previous project</small>Boardgame Tester</a>
+      <a class="next" href="/camping-journal"><small>Next project</small>Camping Journal</a>
     </section>
   </main>
 
